@@ -19,8 +19,7 @@ program
   .action((fields, options) => {    
     const token = options.token || process.env.MESSENGER_PAGE_TOKEN,
           actions = ['get', 'set', 'delete'].filter(action => options[action]),
-          MessengerProfile = new messenger_profile(token);;  
-          console.log(token)
+          MessengerProfile = new messenger_profile(token);
 
     if (actions.length > 1) {
       console.error('Multiple operations not allowed');
@@ -28,9 +27,9 @@ program
     }
 
     if (options.set) {
-      MessengerProfile.get(fields) 
+      MessengerProfile.set(fields) 
     } else if (options.delete) {
-      MessengerProfile.get(fields)
+      MessengerProfile.delete(fields)
     } else if (options.get || token) {
       MessengerProfile.get(fields)
     }
