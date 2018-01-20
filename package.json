@@ -1,0 +1,26 @@
+{
+  "name": "messenger-cli",
+  "version": "0.0.1",
+  "description": "A simple CLI for updating your Messenger Platform bot",
+  "main": "index.js",
+  "bin": {
+    "messenger": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amuramoto/messenger-cli.git"
+  },
+  "author": "Alex Muramoto",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/amuramoto/messenger-cli/issues"
+  },
+  "homepage": "https://github.com/amuramoto/messenger-cli#readme",
+  "dependencies": {
+    "commander": "^2.13.0",
+    "messenger-node": "^0.2.1"
+  }
+}
