@@ -11,19 +11,16 @@ program
 
 
 program
-  .command('profile <fields...>')
+  .command('profile [fields]')
   .option('-s, --set', 'Set Messenger Profile fields.')
-  .option('-d, --delete <fields>', 'Delete Messenger Profile fields.')
-  .option('-g, --get <fields>', 'Retrieve Messenger Profile fields.')
+  .option('-d, --delete', 'Delete Messenger Profile fields.')
+  .option('-g, --get', 'Retrieve Messenger Profile fields.')
   .option('-t, --token <token>', 'Page access token. May also be set in MESSENGER_PAGE_TOKEN env var.')
   .action((fields, options) => {    
-    let token = options.token || process.env.MESSENGER_PAGE_TOKEN,
-        actions = ['get', 'set', 'delete'].filter(action => options[action]);
-    
-    if (!token) {
-      console.error('Page access token required');
-      process.exit(1);
-    }
+    const token = options.token || process.env.MESSENGER_PAGE_TOKEN,
+          actions = ['get', 'set', 'delete'].filter(action => options[action]),
+          MessengerProfile = new messenger_profile(token);;  
+          console.log(token)
 
     if (actions.length > 1) {
       console.error('Multiple operations not allowed');
@@ -31,11 +28,11 @@ program
     }
 
     if (options.set) {
-
+      MessengerProfile.get(fields) 
     } else if (options.delete) {
-
+      MessengerProfile.get(fields)
     } else if (options.get || token) {
-
+      MessengerProfile.get(fields)
     }
 
     // console.log(fields);
