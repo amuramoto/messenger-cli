@@ -7,11 +7,12 @@ const program = require('commander'),
       
 program
   .version('0.0.1')
-  .description('test')
+  .description('A simple CLI for making common Messenger Platform calls.')
 
 
 program
   .command('profile [fields]')
+  .description('Set/get/delete Messenger Profile properties.')
   .option('-s, --set', 'Set Messenger Profile fields.')
   .option('-d, --delete', 'Delete Messenger Profile fields.')
   .option('-g, --get', 'Retrieve Messenger Profile fields.')
@@ -36,10 +37,12 @@ program
 
 program  
   .command('nlp')
+  .description('Set config values for built-in NLP')
   .option('-s, --set <configs...>', 'Set built-in NLP config values.')  
 
 program  
   .command('code')
+  .('Generates static and parametric Messenger Codes')
   .option('-s, --size <size>', 'Size of the returned Messenger Code in pixels. Supports 100-2000.')
   .option('-d, --data <ref>', 'Ref string sent to the bot when the Messenger Code is scanned.')
 
