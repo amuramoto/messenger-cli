@@ -39,13 +39,14 @@ program
   .command('nlp')
   .description('Set config values for built-in NLP')
   .option('-s, --set <configs...>', 'Set built-in NLP config values.')  
+  .option('-t, --token <token>', 'Page access token. May also be set in MESSENGER_PAGE_TOKEN env var.')
 
 program  
   .command('code')
-  .('Generates static and parametric Messenger Codes')
+  .description('Generates static and parametric Messenger Codes')
   .option('-s, --size <size>', 'Size of the returned Messenger Code in pixels. Supports 100-2000.')
   .option('-d, --data <ref>', 'Ref string sent to the bot when the Messenger Code is scanned.')
-
+  .option('-t, --token <token>', 'Page access token. May also be set in MESSENGER_PAGE_TOKEN env var.')
 
 
 program.parse(process.argv);  

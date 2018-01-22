@@ -1,13 +1,11 @@
-const Messenger = require('messenger-node');
+const Messenger = require('messenger-node'),
+      util = require('../util');
 let Client;
 
 function MessengerProfile (page_token) {
 
-  if (!page_token) {
-    console.error('Page access token required');
-    process.exit(1);
-  }
-
+  let token = util.checkToken(page_token);
+  
   Client = new Messenger.Client({'page_token': page_token});
   
   this.get = get;
