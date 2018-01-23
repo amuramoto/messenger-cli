@@ -1,41 +1,38 @@
 const Messenger = require('messenger-node'),
+      prompt = require('co-prompt'),
       util = require('../util');
+
 let Client;
 
-function MessengerProfile (page_token) {
-
-  let token = util.checkToken(page_token);
-  
-  Client = new Messenger.Client({'page_token': page_token});
-  
+function MessengerProfile (client) {  
+  Client = client
   this.get = get;
   this.set = set;
   this.delete = del;
-
 }
 
-function get (fields) {
+function get (fields) {  
   Client.getMessengerProfile(fields)
-    .then(res => {
-      res.data.forEach(field => {
-        for (let field_name in field) {
-          console.log(`${field_name}: ${JSON.stringify(field[field_name])}`)
-        }      
-      });
+    .then(res => {      
+      for (field in res.data[0]) {
+        console.log(`${field}: ${JSON.stringify(res.data[0][field], null, 2)} \n\n`);  
+      }
+      
     })
+    .catch (e => console.error(e));
 }
 
-function set (fields) {
-  let update;
-  fields.forEach(field => {
-    let field = field.split('=');
-    update[field[0]] = field[1];
-  });
+async function set (fields) {
+  let update = {};
+  for (let i = 0; i < fields.length; i++) {    
+    let value = await util.getInput(fields[i]);
+    update[fields[i]] = value;
+  };
 
-  Client.deleteMessengerProfile(fields)
+  Client.setMessengerProfile(update)
     .then(res => {
       Client.getMessengerProfile(fields).then(profile => {
-        console.log('Success:\n\n' + profile);     
+        console.log('Success! Current Messenger Profile:\n\n' + JSON.stringify(profile.data[0], null, 2));     
       });      
     })
     .catch (e => console.error(e));
@@ -44,7 +41,7 @@ function set (fields) {
 function del (fields) {
   Client.deleteMessengerProfile(fields)
     .then(res => {
-      console.log('Successfully deleted:\n\n' + fields.join(', '))     
+      console.log('Successfully deleted:\n- ' + fields.join('\n- '));     
     })
     .catch (e => console.error(e));
 }
