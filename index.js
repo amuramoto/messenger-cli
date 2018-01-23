@@ -39,21 +39,15 @@ program
     }
   });
 
-// program  
-//   .command('nlp')
-//   .description('Set config values for built-in NLP')
-//   .option('-s, --set <configs...>', 'Set built-in NLP config values.')
-//   .action((fields, options) => {    
-//     const token = options.token || process.env.MESSENGER_PAGE_TOKEN,
-//           Nlp = new nlp(token);
-//     util.checkToken(token);
-//     if (options[0] !== 'set') {
-//       console.error('Error: Invalid NLP action - only -s or --set allowed.');
-//       process.exit(1);
-//     }
-//     // Nlp.set()
+program  
+  .command('nlp <configs...>')
+  .description('Set config values for built-in NLP. Configs should be in the format config_name=value.')
+  .action((configs) => {    
+    const Nlp = new nlp(client);   
+    console.log(configs)
+    Nlp.set(configs);
     
-//   });
+  });
 
 // program  
 //   .command('code')
