@@ -1,5 +1,4 @@
 const Messenger = require('messenger-node'),
-      prompt = require('co-prompt'),
       util = require('../util');
 
 let Client;

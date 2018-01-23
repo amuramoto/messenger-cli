@@ -1,5 +1,6 @@
 const Messenger = require('messenger-node'),
-      readline = require('readline');
+      readline = require('readline'),
+      chalk = require('chalk');
 
 function getClient (page_token) {
   if (!page_token) { 
@@ -17,8 +18,7 @@ function getInput (field) {
 
     let rl = readline.createInterface({
         'input': process.stdin,
-        'output': process.stdout,
-        'prompt': `\nEnter ${field} object:\n\n`
+        'output': process.stdout
     });
 
     readline.emitKeypressEvents(process.stdin);
@@ -42,7 +42,7 @@ function getInput (field) {
         resolve(input);
     });  
 
-    rl.prompt();
+    console.log(chalk.underline.bold(`Enter ${field} object:\n`));
   })
   
 }
