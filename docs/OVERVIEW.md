@@ -1,5 +1,7 @@
 # Messenger Platform CLI
 
+[![NSP Status](https://nodesecurity.io/orgs/alex/projects/4aad36ab-fea7-4497-aaa8-44d8c89e74f9/badge)](https://nodesecurity.io/orgs/alex/projects/4aad36ab-fea7-4497-aaa8-44d8c89e74f9)
+
 This is a CLI for executing common Messenger Platform actions that aren't usually called in application code. The following is supported:
 
 - [__Messenger Profile__](https://developers.facebook.com/docs/messenger-platform/reference/messenger-profile-api): Get, set, and delete Messenger Profile properties.
