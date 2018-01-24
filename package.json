@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "docs": "rm README.md && cat docs/OVERVIEW.md > README.md && echo '```' >> README.md && messenger -h >> README.md && echo '```' >> README.md"
+    "docs": "sh docs/docgen.sh"
   },
   "repository": {
     "type": "git",
