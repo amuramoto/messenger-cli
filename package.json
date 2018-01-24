@@ -8,26 +8,21 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "docs": "echo '```' > README.md && messenger -h >> README.md && echo '```' >> README.md"
+    "docs": "rm README.md && cat docs/OVERVIEW.md > README.md && echo '```' >> README.md && messenger -h >> README.md && echo '```' >> README.md"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/amuramoto/messenger-cli.git"
+    "url": "https://github.com/amuramoto/messenger-cli.git"
   },
   "author": "Alex Muramoto",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/amuramoto/messenger-cli/issues"
   },
-  "repository": { 
-    "type" : "git", 
-    "url" : "https://github.com/amuramoto/messenger-cli.git"
-  },
   "homepage": "https://github.com/amuramoto/messenger-cli",
   "dependencies": {
     "chalk": "^2.3.0",
     "commander": "^2.13.0",
-    "messenger-node": "^0.2.1",
-    "readline": "^1.3.0"
+    "messenger-node": "^0.2.1"
   }
 }
