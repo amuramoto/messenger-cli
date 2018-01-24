@@ -1,3 +1,5 @@
+const chalk = require('chalk'),
+      util = require('../util');
 let Client;
 
 function Nlp (client) {
@@ -9,7 +11,7 @@ function set (configs) {
   let update = {};
   configs.forEach(config => {
     if (config.indexOf('=') < 1) {
-      console.error('Syntax error: Config must be in the format config=value.')
+      console.error(chalk.red('Syntax error: Config must be in the format config=value.'));
       process.exit(1);
     }
     config = config.split('=');
@@ -17,9 +19,10 @@ function set (configs) {
   });
  Client.setNlpConfigs(update)
   .then(res => {
-    console.log('Success! The following NLP configs were updated:\n\n' + JSON.stringify(update, null, 2));     
+    console.log(chalk.underline.bold('Success! The following NLP configs were updated:\n'));
+    console.log(chalk.green(JSON.stringify(update, null, 2)) + '\n');     
   })
-  .catch(e => console.error(e)); 
+  .catch (e => util.logError(e));
 }
 
 module.exports = Nlp;

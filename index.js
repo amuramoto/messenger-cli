@@ -42,36 +42,21 @@ program
 program  
   .command('nlp <configs...>')
   .description('Set config values for built-in NLP. Configs should be in the format config_name=value.')
-  .action((configs) => {    
+  .option('-s, --set', 'Set Messenger Profile fields.')
+  .action((configs) => {        
     const Nlp = new nlp(client);   
-    console.log(configs)
-    Nlp.set(configs);
-    
+    Nlp.set(configs);    
   });
 
-// program  
-//   .command('code')
-//   .description('Generates static and parametric Messenger Codes')
-//   .option('-s, --size <size>', 'Size of the returned Messenger Code in pixels. Supports 100-2000.')
-//   .option('-d, --data <ref>', 'Ref string sent to the bot when the Messenger Code is scanned.')
-//   .action((fields, options) => {    
-//     const token = options.token || process.env.MESSENGER_PAGE_TOKEN,
-//           actions = ['get', 'set', 'delete'].filter(action => options[action]),
-//           MessengerProfile = new messenger_profile(token);
+program  
+  .command('code')
+  .description('Set config values for built-in NLP. Configs should be in the format config_name=value.')
+  .option('-s, --size <size>', 'Set the image size in pixels. Supported range: 100-2000. Defaults to 1000.')
+  .option('-d, --data <data>', 'Set the referral payload. Max 250 characters. Valid characters: a-z A-Z 0-9 +/=-.:_')
+  .action((configs, options) => {        
+    const MessengerCode = new messenger_code(client);   
+    MessengerCode.generate(configs);    
+  });
 
-//     util.checkToken(token);          
-//     if (actions.length > 1) {
-//       console.error('Error: Multiple operations not allowed');
-//       process.exit(1);
-//     }
-
-//     if (options.set) {
-//       MessengerProfile.set(fields) 
-//     } else if (options.delete) {
-//       MessengerProfile.delete(fields)
-//     } else if (options.get || token) {
-//       MessengerProfile.get(fields)
-//     }
-//   });
 
 program.parse(process.argv);  

@@ -47,7 +47,12 @@ function getInput (field) {
   
 }
 
+function logError (e) {
+  console.error('\n' + chalk.red(JSON.stringify(e, null, 2)) + '\n');
+}
+
 module.exports = {
   getClient,
-  getInput
+  getInput,
+  logError
 }

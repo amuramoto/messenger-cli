@@ -1,5 +1,6 @@
 const Messenger = require('messenger-node'),
-      util = require('../util');
+      util = require('../util'),
+      chalk = require('chalk');
 
 let Client;
 
@@ -14,11 +15,10 @@ function get (fields) {
   Client.getMessengerProfile(fields)
     .then(res => {      
       for (field in res.data[0]) {
-        console.log(`${field}: ${JSON.stringify(res.data[0][field], null, 2)} \n\n`);  
-      }
-      
+        console.log(chalk.green(`${field}: ${JSON.stringify(res.data[0][field], null, 2)} \n\n`));  
+      }      
     })
-    .catch (e => console.error(e));
+    .catch (e => util.logError(e));
 }
 
 async function set (fields) {
@@ -31,18 +31,20 @@ async function set (fields) {
   Client.setMessengerProfile(update)
     .then(res => {
       Client.getMessengerProfile(fields).then(profile => {
-        console.log('Success! Current Messenger Profile:\n\n' + JSON.stringify(profile.data[0], null, 2));     
+        console.log(chalk.underline.bold('\nSuccess! Here is your updated Messenger Profile:\n'));
+        console.log(chalk.green(JSON.stringify(profile.data[0], null, 2)));     
       });      
     })
-    .catch (e => console.error(e));
+    .catch (e => util.logError(e));
 }
 
 function del (fields) {
   Client.deleteMessengerProfile(fields)
     .then(res => {
-      console.log('Successfully deleted:\n- ' + fields.join('\n- '));     
+      console.log(chalk.bold.underline('\nSuccessfully deleted:\n- '));
+      console.log(chalk.green(fields.join('\n- ')));     
     })
-    .catch (e => console.error(e));
+    .catch (e => util.logError(e));
 }
 
 module.exports = MessengerProfile;
