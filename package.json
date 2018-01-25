@@ -23,6 +23,7 @@
   "dependencies": {
     "chalk": "^2.3.0",
     "commander": "^2.13.0",
-    "messenger-node": "^0.2.1"
+    "messenger-node": "^0.2.1",
+    "request": "^2.83.0"
   }
 }
